@@ -3,22 +3,22 @@ const dataReviews = [
     id: 1,
     name: 'Sara Jone',
     job: 'UX Designer',
-    img: 'https://unsplash.com/photos/0Zx1bDv5BNY',
+    img: 'https://github.com/gibify/vanilla-javascript/blob/main/reviews/images/person-1.jpeg',
     bio: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error amet quisquam in itaque quos eaque minus quod, impedit quas veritatis dolorem nam ipsa iusto saepe debitis earum nihil ratione doloremque.'
   },
   {
     id: 2,
     name: 'Jhone Don',
     job: 'Software Enginner',
-    img: 'https://br.freepik.com/fotos-gratis/jovem-em-uma-camisa-trabalhando-no-laptop-roxo_9480201.htm#query=pessoas&position=0&from_view=keyword',
+    img: 'https://github.com/gibify/vanilla-javascript/blob/main/reviews/images/person-1.jpeg',
     bio: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error amet quisquam in itaque quos eaque minus quod, impedit quas veritatis dolorem nam ipsa iusto saepe debitis earum nihil ratione doloremque.'
   },
   {
     id: 3,
     name: 'Eliza Ruth',
     job: 'Product Manager',
-    img: 'https://br.freepik.com/fotos-gratis/mulher-de-negocios-loira-pensando-bonita-na-parede-branca_13411048.htm?query=pessoas',
-    bio: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error amhttps://br.freepik.com/fotos-gratis/mulher-de-negocios-loira-pensando-bonita-na-parede-branca_13411048.htm?query=pessoaset quisquam in itaque quos eaque minus quod, impedit quas veritatis dolorem nam ipsa iusto saepe debitis earum nihil ratione doloremque.'
+    img: 'https://github.com/gibify/vanilla-javascript/blob/main/reviews/images/person-1.jpeg',
+    bio: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error set quisquam in itaque quos eaque minus quod, impedit quas veritatis dolorem nam ipsa iusto saepe debitis earum nihil ratione doloremque.'
   },
 ];
 
@@ -37,8 +37,37 @@ let currentItem = 0;
 
 // load initial item
 window.addEventListener('DOMContentLoaded', function() {
-  const item = dataReviews[currentItem];
-  author.innerHTML = item.name;
+  showPerson();
+});
 
-  console.log(item)
+// show person based on item
+function showPerson() {
+  const item = dataReviews[currentItem];
+  author.textContent = item.name;
+  job.textContent = item.job
+  info.textContent = item.bio;
+};
+
+// show next person
+nextBtn.addEventListener("click", function() {
+  currentItem++;
+  if(currentItem > dataReviews.length - 1) {
+    currentItem = 0;
+  }
+  showPerson();
+});
+
+// show prev person
+prevBtn.addEventListener("click", function() {
+  currentItem--;
+  if(currentItem < 0) {
+    currentItem = dataReviews.length - 1;
+  }
+  showPerson();
+});
+
+//show random person
+randomBtn.addEventListener("click", function() {
+  currentItem = Math.floor(Math.random() * dataReviews.length);
+  showPerson();
 });
